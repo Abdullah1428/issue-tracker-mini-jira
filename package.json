@@ -1,0 +1,23 @@
+{
+  "name": "issue-tracker-bontouch",
+  "version": "1.0.0",
+  "description": "a simple issue tracker built as a coding task assigned by bontouch.",
+  "main": "src/index.ts",
+  "scripts": {
+    "compile": "webpack --watch",
+    "start": "webpack --watch & live-server --open=./public/index.html",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abdullah1428",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
