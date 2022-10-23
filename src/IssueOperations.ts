@@ -144,7 +144,8 @@ export const setIssueState = (
 
       if (isChildrenTasksDone) {
         issue.state = state;
-        return '400: SetState Operation Successful!';
+        issue.updatedAt = Date.now();
+        return '200: SetState Operation Successful!';
       } else {
         return '400: SetState Operaton Failed!';
       }
