@@ -1,8 +1,47 @@
-# Interview Case v1.9 - BonTouch
+## Implementation of an Issue Tracking Engine - A mini version of JIRA.
 
-## Task: Implement an Issue Tracking Engine
+## Project Description - Design Decisions and Assumptions.
 
-### Implemented by - Abdullah Abdullah
+This issue tracker app is a very simple solution with no UI and is built using Typescript.
+No data is persisted for the "issues" and "users". To store issues and users data two arrays
+are initialized in the "src/index.ts". For clean code and separation purposes all the operations related
+to issue creation, removal, updating, setting parent are defined in "src/IssueOperations.ts" and all the operations
+related to user creation, removal and getting are defined in "src/UserOperations.ts".
+
+To generate unique IDs for Users and Issues (so that they can be identified by those ids) a helper function is
+defined in "src/helpers/util.ts" named "getUniqueID" which just takes current time and add a random number with it.
+
+For data representation, User is represented by
+
+```
+User {
+  id: string,
+  name: string,
+  createdAt: number
+}
+
+```
+
+and Issue is represented by
+
+```
+Issue {
+  id: string,
+  title: string,
+  state: IssueState.TODO | IssueState.IN_PROGRESS | IssueState.DONE,
+  type: IssueType.TASK | IssueType.STORY | IssueType.EPIC,
+  parent: Issue["id"] | {},
+  children: Array<Issue["id"]>,
+  assignedTo: User["id"] | null,
+  createdAt: number,
+  updatedAt: number,
+};
+
+```
+
+One assumption made is that each issue have a parent and children property, where parent is
+the "issueId" and children is array of "issueId". Each time when a parent is assigned to a issue, both
+the issue is updated with a parent and the parent of the issue is updated with children.
 
 ### How To Run the App
 
@@ -50,49 +89,6 @@ To see output open your console on the browser and there you can see different o
 - Better handling of errors.
 - Code refactoring with removal of repetitive code
 - More complex test scenarios and robust unit testing.
-
-## Project Description - Design Decisions and Assumptions.
-
-This issue tracker app is a very simple solution with no UI and is built using Typescript.
-No data is persisted for the "issues" and "users". To store issues and users data two arrays
-are initialized in the "src/index.ts". For clean code and separation purposes all the operations related
-to issue creation, removal, updating, setting parent are defined in "src/IssueOperations.ts" and all the operations
-related to user creation, removal and getting are defined in "src/UserOperations.ts".
-
-To generate unique IDs for Users and Issues (so that they can be identified by those ids) a helper function is
-defined in "src/helpers/util.ts" named "getUniqueID" which just takes current time and add a random number with it.
-
-For data representation, User is represented by
-
-```
-User {
-  id: string,
-  name: string,
-  createdAt: number
-}
-
-```
-
-and Issue is represented by
-
-```
-Issue {
-  id: string,
-  title: string,
-  state: IssueState.TODO | IssueState.IN_PROGRESS | IssueState.DONE,
-  type: IssueType.TASK | IssueType.STORY | IssueType.EPIC,
-  parent: Issue["id"] | {},
-  children: Array<Issue["id"]>,
-  assignedTo: User["id"] | null,
-  createdAt: number,
-  updatedAt: number,
-};
-
-```
-
-One assumption made is that each issue have a parent and children property, where parent is
-the "issueId" and children is array of "issueId". Each time when a parent is assigned to a issue, both
-the issue is updated with a parent and the parent of the issue is updated with children.
 
 ### TESTING
 
