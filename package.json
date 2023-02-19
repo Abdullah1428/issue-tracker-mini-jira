@@ -1,7 +1,7 @@
 {
-  "name": "issue-tracker-bontouch",
+  "name": "issue-tracker-mini-jira",
   "version": "1.0.0",
-  "description": "a simple issue tracker built as a coding task assigned by bontouch.",
+  "description": "a simple issue tracker built using TS.",
   "main": "src/index.ts",
   "scripts": {
     "compile": "webpack --watch",
